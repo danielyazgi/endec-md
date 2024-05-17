@@ -1,0 +1,35 @@
+{
+  "name": "endec-md",
+  "version": "1.0.0",
+  "description": "a simple command line to enrypt and decrypt the content of markdown",
+  "bin": {
+    "endec": "./src/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielyazgi/endec-md.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Encryption",
+    "Decryption",
+    "Markdown"
+  ],
+  "author": "Daniel Yazgi",
+  "license": "MIT",
+  "dependencies": {
+    "clipboardy": "^4.0.0",
+    "commander": "^8.3.0",
+    "dotenv": "^16.4.5",
+    "ignore": "^5.3.1",
+    "jschardet": "^3.1.2",
+    "keypress": "^0.2.1",
+    "readline": "^1.3.0"
+  },
+  "homepage": "https://github.com/danielyazgi/endec-md#readme",
+  "publishConfig": {
+    "access": "public"
+  }
+}
