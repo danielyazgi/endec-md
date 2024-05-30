@@ -20,15 +20,36 @@ jobs:
           registry-url: "https://registry.npmjs.org"
         continue-on-error: false
 
+      - name: Get current version
+        id: get_current_version
+        run: |
+          echo "CURRENT_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+        continue-on-error: false
+
+      - name: Get latest published version
+        id: get_latest_version
+        run: |
+          LATEST_VERSION=$(npm view ${{ github.event.repository.name }} version)
+          echo "LATEST_VERSION=${LATEST_VERSION}" >> $GITHUB_ENV
+        continue-on-error: false
+
+      - name: Compare versions
+        id: compare_versions
+        run: |
+          if [ "${{ env.CURRENT_VERSION }}" != "${{ env.LATEST_VERSION }}" ]; then
+            echo "VERSION_CHANGED=true" >> $GITHUB_ENV
+          else
+            echo "VERSION_CHANGED=false" >> $GITHUB_ENV
+          fi
+        continue-on-error: false
+
       - name: Install dependencies
+        if: env.VERSION_CHANGED == 'true'
         run: npm install
         continue-on-error: false
 
-      - name: Build the package
-        run: npm run build
-        continue-on-error: false
-
       - name: Publish to npm
+        if: env.VERSION_CHANGED == 'true'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_AUTOMATION_TOKEN }}
         run: npm publish --access public
