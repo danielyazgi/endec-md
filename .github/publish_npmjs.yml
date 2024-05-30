@@ -1,0 +1,35 @@
+name: Publish npm Package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        continue-on-error: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.12.2"
+          registry-url: "https://registry.npmjs.org"
+        continue-on-error: false
+
+      - name: Install dependencies
+        run: npm install
+        continue-on-error: false
+
+      - name: Build the package
+        run: npm run build
+        continue-on-error: false
+
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_AUTOMATION_TOKEN }}
+        run: npm publish --access public
+        continue-on-error: false
