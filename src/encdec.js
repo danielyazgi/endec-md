@@ -27,7 +27,7 @@ function encryptAndReplace(data, isEnc, passkey) {
       // <enc> tag not properly closed
       throw new Error("Invalid input format: unclosed <enc> tag.");
     }
-    // Extract passkey between <enc> tags
+    // Extract code between <enc> tags
     const text = data.slice(encStartIndex + slen, encEndIndex);
 
     const result = isEnc ? encrypt(text, passkey) : decrypt(text, passkey);

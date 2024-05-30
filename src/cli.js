@@ -21,6 +21,10 @@ program
   )
   .option("-r, --recursive", "do recursive search for markdown files")
   .option(
+    "--scan",
+    "recursively scans all markdown files. If these is any <enc> tags will exit with code 1 else will exit with code 0. This option have the highest preiority and it is useful with pre-commit hooks"
+  )
+  .option(
     "-s, --show",
     "shows the decrypted content for a period of time and then clears it.\nIf not specified, the decrypted content will be copied to the clipboard.\nThe dispay time period is 5 seconds by default by can be changes by SHOW_DECRYPTED_SECONDS environment variable."
   )

@@ -62,6 +62,16 @@ async function decryptInput(options) {
 }
 
 async function run(options) {
+  if (options.scan) {
+    const files = fm.findMdFiles(options.target, true);
+    if (files.length === 0) {
+      process.exit(0);
+    } else {
+      console.log("These files still contain unecrypted data", files);
+      process.exit(1);
+    }
+  }
+
   // single input
   if (options.encryptedCode) {
     await decryptInput(options);
