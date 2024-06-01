@@ -64,7 +64,7 @@ async function decryptInput(options) {
 async function run(options) {
   if (options.scan) {
     const files = fm.findMdFiles(options.target, true);
-    filesList = fm.withPattern(files, true);
+    const filesList = fm.withPattern(files, true);
     if (filesList.length === 0) {
       process.exit(0);
     } else {
