@@ -41,7 +41,7 @@ The passkey for encryption and decryption can be read from the environment varia
 
 ### Default Ignored Directories
 
-By default, this command-line tool will ignore `README.md`, `node_modules`, `.vscode`, and `.git` to ensure optimal performance and avoid unnecessary processing.
+By default, this command-line tool will ignore `README.md`, `node_modules`, `.vscode`, `.sample` and `.git` to ensure optimal performance and avoid unnecessary processing.
 
 ### Excluding Files and Directories
 

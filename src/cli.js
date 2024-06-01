@@ -7,7 +7,7 @@ const run = require("./run");
 
 program
   .name("endec")
-  .version("1.0.0")
+  .version("1.0.2")
   .description(
     "A simple command-line interface for encrypting and decrypting strings in markdown files."
   )

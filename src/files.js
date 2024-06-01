@@ -5,6 +5,7 @@ const ignore = require("ignore");
 
 let endecignoreContent = `
 node_modules
+.sample
 .git
 .vscode
 README.md
