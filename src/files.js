@@ -18,11 +18,29 @@ if (fs.existsSync(".endecignore")) {
 // Initialize the ignore instance
 const ig = ignore().add(endecignoreContent);
 
+
+ 
+
 // Function to recursively find files matching a pattern in a directory, excluding specified directories
 function findFiles(target, recursive, pattern, filesList = []) {
+  const lstat = fs.lstatSync(target);
+  if (lstat.isSymbolicLink()) {
+    throw new Error("Symbolic links are not supported.");
+  }
+
   if (!fs.existsSync(target)) {
     return filesList;
   }
+
+  if (fs.statSync(target).isFile()) {
+    if (target.match(pattern)) {
+      filesList.push(target);       
+    } 
+    return filesList 
+  }
+  
+  // the target is a directory
+
   const files = fs.readdirSync(target);
 
   files.forEach((file) => {
