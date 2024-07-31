@@ -7,7 +7,7 @@ const run = require("./run");
 
 program
   .name("endec")
-  .version("1.0.3")
+  .version("1.0.5")
   .description(
     "A simple command-line interface for encrypting and decrypting strings in markdown files."
   )
@@ -32,6 +32,10 @@ program
     "-t, --target <string>",
     "specific target path, which can be a markdown file or a directory."
   )
+  .option(
+    "-i, --init",
+    "initialize a git repository and create a pre-commit hook to scan for unencrypted data before committing."
+  )  
   .option(
     "    --dry-run",
     "dry-run mode; will not write any files, just prints which files will be affected."

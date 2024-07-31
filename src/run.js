@@ -1,7 +1,8 @@
 const fm = require("./files.js");
 const em = require("./encdec.js");
 const kb = require("./keyboard.js");
-
+const sys = require("./system.js");
+ 
 function countLines(str) {
   // Split the string by newline characters (\n)
   const lines = str.split("\n");
@@ -62,6 +63,12 @@ async function decryptInput(options) {
 }
 
 async function run(options) {
+  
+  if (options.init) {
+    await sys.initializeGitRepository();
+    process.exit(0);  
+  }
+
   if (options.scan) {
     const files = fm.findMdFiles(options.target, true);
     const filesList = fm.withPattern(files, true);

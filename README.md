@@ -28,6 +28,7 @@ endec [options] [encrypted-code]
 - `-r, --recursive`: Do a recursive search for markdown files.
 - `-s, --show`: Shows the decrypted content for a period of time and then clears it. If not specified, the decrypted content will be copied to the clipboard. The display time period is 5 seconds by default, but can be changed by the `SHOW_DECRYPTED_SECONDS` environment variable.
 - `-t, --target <string>`: Specify the target path, which can be a markdown file or a directory.
+- `-i, --init`: initialize a git repository and create a pre-commit hook to scan for unencrypted data before committing. 
 - `--dry-run`: Dry-run mode; will not write any files, just prints which files will be affected.
 
 ## How It Works
@@ -56,6 +57,7 @@ For multi-line content, use the `<enc></enc>` tags to enclose the text you wish 
 - Nested tags are not supported.
 - Multiple lines can be enclosed by `<enc>` and `</enc>`.
 - Do **NOT** forget your passkey and ensure it is **NOT** exposed to others.
+- It is adviced to firct run `endec --init`  in an empty directory to initialize a git repository with a pre-commit hook to prevent commiting unencrypted files. Then one can add the remote repositories `git remote add origin [my-remote-repository-url]`
 
 ## Examples
 
