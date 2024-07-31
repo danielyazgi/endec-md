@@ -1,6 +1,6 @@
 {
   "name": "endec-md",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "a simple command line to enrypt and decrypt the content of markdown",
   "bin": {
     "endec": "./src/cli.js"

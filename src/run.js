@@ -2,7 +2,7 @@ const fm = require("./files.js");
 const em = require("./encdec.js");
 const kb = require("./keyboard.js");
 const sys = require("./system.js");
- 
+
 function countLines(str) {
   // Split the string by newline characters (\n)
   const lines = str.split("\n");
@@ -63,10 +63,9 @@ async function decryptInput(options) {
 }
 
 async function run(options) {
-  
   if (options.init) {
     await sys.initializeGitRepository();
-    process.exit(0);  
+    process.exit(0);
   }
 
   if (options.scan) {
@@ -92,22 +91,24 @@ async function run(options) {
     process.stdout.write("No markdown files found in the search locations.\n");
     process.exit(0);
   }
+  if (!options.yes) {
+    let action = "NoAcceptable";
+    let inputMessage = "Encrypt targeted files? y/[N]: ";
+    if (options.decrypt) {
+      inputMessage = "Decrypt all targeted files? (Be Careful) y/[N]: ";
+    }
 
-  let action = "NoAcceptable";
-  let inputMessage = "Encrypt targeted files? y/[N]: ";
-  if (options.decrypt) {
-    inputMessage = "Decrypt all targeted files? (Be Careful) y/[N]: ";
+    action = await kb.readLine(inputMessage);
+    while (!isAcceptableOption(action)) {
+      action = await kb.readLine("Enter correct option [y/N]: ");
+    }
+    const isNo = action === "" || action.toLowerCase() === "n";
+
+    if (isNo) {
+      process.exit(0);
+    }
   }
 
-  action = await kb.readLine(inputMessage);
-  while (!isAcceptableOption(action)) {
-    action = await kb.readLine("Enter correct option [y/N]: ");
-  }
-  const isNo = action === "" || action.toLowerCase() === "n";
-
-  if (isNo) {
-    process.exit(0);
-  }
   const isEnc = !options.decrypt;
   let filesList = [];
 
