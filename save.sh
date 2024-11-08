@@ -6,4 +6,4 @@ git add .
 git commit -m "$@"
 git push
 git tag v$npm_package_version
-git push tag v$npm_package_version
+git push origin v$npm_package_version

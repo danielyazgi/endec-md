@@ -70,7 +70,7 @@ program.addHelpText(
 
   For multi-line content, use the <enc></enc> tags to enclose the text you wish to encrypt.
 
-
+ for files with extensio .secure.md, the program will encrypt the whole file content, if it does not start with **encrypted**.
 
 
   Notes:

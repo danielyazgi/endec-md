@@ -7,6 +7,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    if: contains(github.event.release.body, '--run--publish')
 
     steps:
       - name: Check out repository
